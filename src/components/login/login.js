@@ -60,7 +60,7 @@ export default function Login() {
                             </Form>
                         </div>
                         <p>
-                            Don&rsquo;t have an account pls{" "}
+                            Don&rsquo;t have an account please{" "}
                             <span>
                                 <Link to="signup-page">sign up</Link>
                             </span>

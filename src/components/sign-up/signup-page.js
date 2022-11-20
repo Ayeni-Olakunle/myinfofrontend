@@ -98,9 +98,9 @@ export default function SignupPage() {
                             </Form>
                         </div>
                         <p>
-                            Don&rsquo;t have an account pls{" "}
+                            Already have an account please{" "}
                             <span>
-                                <Link to="signup-page">sign up</Link>
+                                <Link to="/">Login</Link>
                             </span>
                         </p>
                     </div>
