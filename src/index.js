@@ -4,16 +4,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
+import store from "./components/store/store";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
-import authReducer from "./features/auth/authSlice";
-
-const store = configureStore({
-  reducer: {
-    auth: authReducer,
-  },
-});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

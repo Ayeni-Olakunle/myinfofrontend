@@ -62,6 +62,7 @@ export default function SignupPage() {
                                         type="text"
                                         placeholder="Full name"
                                         name="fullName"
+                                        autoComplete="true"
                                         value={fullName}
                                         onChange={onChange}
                                     />
@@ -71,6 +72,7 @@ export default function SignupPage() {
                                     <Form.Control
                                         type="email"
                                         placeholder="Enter email"
+                                        autoComplete="true"
                                         name="email"
                                         value={email}
                                         onChange={onChange}
@@ -82,26 +84,29 @@ export default function SignupPage() {
                                         type="number"
                                         placeholder="Phone number"
                                         name="phone"
+                                        autoComplete="true"
                                         value={phone}
                                         onChange={onChange}
 
                                     />
                                 </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword2">
+                                <Form.Group className="mb-3" controlId="formBasicPassword1">
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control
                                         type="password"
                                         placeholder="Password"
                                         name="password"
+                                        autoComplete="true"
                                         value={password}
                                         onChange={onChange}
                                     />
                                 </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword1">
+                                <Form.Group className="mb-3" controlId="formBasicPassword2">
                                     <Form.Label>Re-Type Password</Form.Label>
                                     <Form.Control
                                         type="password"
                                         placeholder="Password"
+                                        autoComplete="true"
                                         name="password2"
                                         value={password2}
                                         onChange={onChange}
