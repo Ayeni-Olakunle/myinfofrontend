@@ -1,49 +1,31 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
-// import { useSelector, useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
-import { Link, } from "react-router-dom";
-// import { reset } from "../../features/auth/authSlice";
+import { Link } from "react-router-dom";
+// import axios from "axios";
 import loginStyle from "./signup-page.module.scss";
 import logo from "../../images/logo.jpeg";
 // import Loading from "../loading/loading";
 
 export default function SignupPage() {
+    // const [match, setMatch] = useState("")
+    // const [load, setLoad] = useState(false)
     const [formDate, setFormDate] = useState({
-        fullName: "",
+        name: "",
         email: "",
-        phone: "",
+        phoneNumber: "",
         password: "",
         password2: ""
     });
 
-    const { fullName, email, phone, password, password2 } = formDate
+    const { name, email, password, phoneNumber } = formDate
     // const navigate = useNavigate();
-    // const dispatch = useDispatch();
-
-    // const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
-
-    // useEffect(() => {
-    //     if (isError) {
-    //         console.log(message);
-    //     }
-
-    //     if (isSuccess || user) {
-    //         navigate("/signup-page")
-    //     }
-    //     dispatch(reset())
-    // }, [user, isError, isSuccess, message, navigate, dispatch])
 
     const onChange = (e) => {
         setFormDate((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
         }))
-        console.log(formDate);
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
     }
     return (
         <section>
@@ -55,15 +37,15 @@ export default function SignupPage() {
                     <div className={loginStyle.holdInput}>
                         <h1>Sign up</h1>
                         <div>
-                            <Form onSubmit={handleSubmit}>
+                            <Form>
                                 <Form.Group className="mb-3" controlId="formBasicFullName">
                                     <Form.Label>Full name</Form.Label>
                                     <Form.Control
                                         type="text"
                                         placeholder="Full name"
-                                        name="fullName"
+                                        name="name"
                                         autoComplete="true"
-                                        value={fullName}
+                                        value={name}
                                         onChange={onChange}
                                     />
                                 </Form.Group>
@@ -83,9 +65,9 @@ export default function SignupPage() {
                                     <Form.Control
                                         type="number"
                                         placeholder="Phone number"
-                                        name="phone"
+                                        name="phoneNumber"
                                         autoComplete="true"
-                                        value={phone}
+                                        value={phoneNumber}
                                         onChange={onChange}
 
                                     />
@@ -108,9 +90,10 @@ export default function SignupPage() {
                                         placeholder="Password"
                                         autoComplete="true"
                                         name="password2"
-                                        value={password2}
-                                        onChange={onChange}
+                                    // value={password2}
+                                    // onChange={onChange}
                                     />
+                                    {/* <Form.Text style={{ color: "tomato !important" }}>{match}</Form.Text> */}
                                 </Form.Group>
                                 <Button variant="primary" className="btn btn-block" type="submit">
                                     Submit
@@ -126,7 +109,7 @@ export default function SignupPage() {
                     </div>
                 </div>
             </div>
-            {/* {isLoading ? <Loading /> : null} */}
+            {/* {load ? <Loading /> : null} */}
         </section>
     );
 }

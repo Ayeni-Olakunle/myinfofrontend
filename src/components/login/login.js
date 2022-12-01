@@ -4,9 +4,12 @@ import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import loginStyle from "./login.module.scss";
 import logo from "../../images/logo.jpeg";
+// import Loading from "../loading/loading";
 
 
 export default function Login() {
+    // const [match, setMatch] = useState("")
+    // const [load, setLoad] = useState(false)
     const [formDate, setFormDate] = useState({
         email: "",
         password: "",
@@ -59,6 +62,7 @@ export default function Login() {
                                 </Button>
                             </Form>
                         </div>
+                        {/* <p>{match}</p> */}
                         <p>
                             Don&rsquo;t have an account please{" "}
                             <span>
@@ -68,6 +72,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
+            {/* {load ? <Loading /> : null} */}
         </section>
     );
 }

@@ -55,4 +55,4 @@ export const authSlicer = createSlice({
 });
 
 export const { reset } = authSlicer.actions;
-export default authSlicer.reducers;
+export default authSlicer.reducer;
