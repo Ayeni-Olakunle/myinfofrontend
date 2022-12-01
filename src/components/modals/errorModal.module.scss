@@ -1,0 +1,23 @@
+.close {
+  width: 700px;
+  height: 141px;
+  color: red;
+}
+
+.errText {
+  font-size: 22px;
+  color: red;
+}
+
+.closeButin {
+  background-color: red !important;
+  border-color: red !important;
+}
+
+@media only screen and (max-width: 800px) {
+  .close {
+    width: 100%;
+    height: 140px;
+    color: red;
+  }
+}

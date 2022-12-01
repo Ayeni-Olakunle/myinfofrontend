@@ -1,15 +1,24 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-// import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux"
 import loginStyle from "./signup-page.module.scss";
 import logo from "../../images/logo.jpeg";
-// import Loading from "../loading/loading";
+import Loading from "../loading/loading";
+import SucceesModal from "../modals/successModal";
+import ErrorModal from "../modals/errorModal";
+import { reset, register } from "../../features/auth/authSlice";
 
 export default function SignupPage() {
-    // const [match, setMatch] = useState("")
-    // const [load, setLoad] = useState(false)
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [match, setMatch] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
+    const [errModal, setErrModal] = useState(false);
+    const [successModal, setSuccessModal] = useState(false);
+
+
     const [formDate, setFormDate] = useState({
         name: "",
         email: "",
@@ -18,8 +27,9 @@ export default function SignupPage() {
         password2: ""
     });
 
-    const { name, email, password, phoneNumber } = formDate
-    // const navigate = useNavigate();
+    const { name, email, password, password2, phoneNumber } = formDate;
+    const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
+
 
     const onChange = (e) => {
         setFormDate((prevState) => ({
@@ -27,6 +37,35 @@ export default function SignupPage() {
             [e.target.name]: e.target.value,
         }))
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (password !== password2) {
+            setMatch("Password not match");
+        } else {
+            const userData = {
+                name,
+                email,
+                phoneNumber,
+                password
+            }
+            dispatch(register(userData))
+        }
+    };
+
+    useEffect(() => {
+        if (isError) {
+            setErrorMsg(message)
+        }
+
+        if (isSuccess || user) {
+            navigate("/information")
+        }
+
+        dispatch(reset())
+
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
     return (
         <section>
             <div className={loginStyle.holdApp}>
@@ -37,7 +76,7 @@ export default function SignupPage() {
                     <div className={loginStyle.holdInput}>
                         <h1>Sign up</h1>
                         <div>
-                            <Form>
+                            <Form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-3" controlId="formBasicFullName">
                                     <Form.Label>Full name</Form.Label>
                                     <Form.Control
@@ -90,10 +129,10 @@ export default function SignupPage() {
                                         placeholder="Password"
                                         autoComplete="true"
                                         name="password2"
-                                    // value={password2}
-                                    // onChange={onChange}
+                                        value={password2}
+                                        onChange={onChange}
                                     />
-                                    {/* <Form.Text style={{ color: "tomato !important" }}>{match}</Form.Text> */}
+                                    <Form.Text style={{ color: "tomato !important" }}>{match}</Form.Text>
                                 </Form.Group>
                                 <Button variant="primary" className="btn btn-block" type="submit">
                                     Submit
@@ -109,7 +148,18 @@ export default function SignupPage() {
                     </div>
                 </div>
             </div>
-            {/* {load ? <Loading /> : null} */}
+            {isLoading ? <Loading /> : null}
+            <ErrorModal
+                show={errModal}
+                onHide={() => setErrModal(false)}
+                errorMsg={errorMsg || "Opps something went wrong"}
+            />
+            <SucceesModal
+                show={successModal}
+                onHide={() => {
+                    setSuccessModal(false);
+                }}
+            />
         </section>
     );
 }
