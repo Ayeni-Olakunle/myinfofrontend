@@ -1,21 +1,26 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { reset, login } from "../../features/auth/loginSlice";
 import loginStyle from "./login.module.scss";
 import logo from "../../images/logo.jpeg";
-// import Loading from "../loading/loading";
+import Loading from "../loading/loading";
 
 
 export default function Login() {
-    // const [match, setMatch] = useState("")
-    // const [load, setLoad] = useState(false)
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [match, setMatch] = useState("");
+
     const [formDate, setFormDate] = useState({
         email: "",
         password: "",
     });
 
-    const { email, password } = formDate
+    const { email, password } = formDate;
+    const { userLogin, isLoading, isError, isSuccess, message } = useSelector((state) => state.login)
 
     const onChange = (e) => {
         setFormDate((prevState) => ({
@@ -23,6 +28,28 @@ export default function Login() {
             [e.target.name]: e.target.value,
         }))
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const loginData = {
+            email,
+            password
+        }
+        dispatch(login(loginData))
+    };
+
+    useEffect(() => {
+        if (isError) {
+            setMatch("Incorrect email address or password")
+        }
+
+        if (isSuccess || userLogin) {
+            navigate("/information")
+        }
+
+        dispatch(reset())
+
+    }, [userLogin, isError, isSuccess, message, navigate, dispatch]);
     return (
         <section>
             <div className={loginStyle.holdApp}>
@@ -33,7 +60,7 @@ export default function Login() {
                     <div className={loginStyle.holdInput}>
                         <h1>Login</h1>
                         <div>
-                            <Form>
+                            <Form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
                                     <Form.Control
@@ -56,13 +83,13 @@ export default function Login() {
                                         value={password}
                                         onChange={onChange}
                                     />
+                                    <Form.Text style={{ color: "tomato !important" }}>{match}</Form.Text>
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
                                     Submit
                                 </Button>
                             </Form>
                         </div>
-                        {/* <p>{match}</p> */}
                         <p>
                             Don&rsquo;t have an account please{" "}
                             <span>
@@ -72,7 +99,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-            {/* {load ? <Loading /> : null} */}
+            {isLoading ? <Loading /> : null}
         </section>
     );
 }
