@@ -1,17 +1,29 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs"
 import { Dropdown } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import dataListStyle from "./index.module.scss";
 import DataList from "../data-list/dataList";
 import AddData from "../add-data/addData";
+import { logout, reset } from "../../features/auth/loginSlice";
 
 export default function Index() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [display, setDisplay] = useState(0);
-
+    const { userLogin } = useSelector((state) => state.login)
     const changeScreen = (index) => {
         setDisplay(index)
+    }
+
+    const onLogout = () => {
+        dispatch(logout())
+        dispatch(reset())
+    }
+    if (userLogin === null) {
+        navigate("/")
     }
     return (
         <section>
@@ -35,9 +47,9 @@ export default function Index() {
                                         Settings
                                     </span>
                                 </Dropdown.Item>
-                                <Dropdown.Item>
-                                    <span>
-                                        <Link to="/" className={dataListStyle.logout}>Logout</Link>
+                                <Dropdown.Item onClick={onLogout}>
+                                    <span className={dataListStyle.logout}>
+                                        Logout
                                     </span>
                                 </Dropdown.Item>
                             </Dropdown.Menu>

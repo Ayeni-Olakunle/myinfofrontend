@@ -24,6 +24,10 @@ export const login = createAsyncThunk("auth/login", async (userLogins, thunkAPI)
     }
 })
 
+export const logout = createAsyncThunk("auth/logout", async () => {
+    await loginService.logout();
+})
+
 export const loginSlicer = createSlice({
     name: "userLogin",
     initialState,
@@ -49,6 +53,9 @@ export const loginSlicer = createSlice({
                 state.isLoading = false;
                 state.isError = true;
                 state.message = actions.payload;
+                state.userLogin = null;
+            })
+            .addCase(logout.fulfilled, (state) => {
                 state.userLogin = null;
             })
     },

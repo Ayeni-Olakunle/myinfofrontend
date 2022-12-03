@@ -24,6 +24,7 @@ export const register = createAsyncThunk("auth/register", async (users, thunkAPI
     }
 })
 
+
 export const authSlicer = createSlice({
     name: "auth",
     initialState,

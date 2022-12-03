@@ -14,8 +14,13 @@ const login = async (loginData) => {
     return response
 }
 
+const logout = () => {
+    sessionStorage.removeItem("userLogin");
+}
+
 const loginService = {
-    login
+    login,
+    logout
 }
 
 export default loginService
