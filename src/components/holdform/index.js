@@ -1,11 +1,18 @@
 /* eslint-disable prettier/prettier */
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs"
 import { Dropdown } from "react-bootstrap";
 import dataListStyle from "./index.module.scss";
+import DataList from "../data-list/dataList";
+import AddData from "../add-data/addData";
 
 export default function Index() {
+    const [display, setDisplay] = useState(0);
+
+    const changeScreen = (index) => {
+        setDisplay(index)
+    }
     return (
         <section>
             <div className={dataListStyle.holdAll}>
@@ -23,9 +30,9 @@ export default function Index() {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item>
-                                    <span>
-                                        <Link to="/" className={dataListStyle.likTage}>Settings</Link>
+                                <Dropdown.Item onClick={() => { changeScreen(2) }}>
+                                    <span className={dataListStyle.likTage}>
+                                        Settings
                                     </span>
                                 </Dropdown.Item>
                                 <Dropdown.Item>
@@ -40,9 +47,26 @@ export default function Index() {
                 </div>
                 <div className={dataListStyle.holdData}>
                     <div className={dataListStyle.holdButton}>
-                        <button type="button" className={dataListStyle.active}>Data List</button>
-                        <button type="button">Add Data</button>
+                        <button
+                            type="button"
+                            className={display === 0 ? dataListStyle.active : null}
+                            onClick={() => {
+                                changeScreen(0)
+                            }}
+                        >Data List</button>
+                        <button
+                            type="button"
+                            className={display === 1 ? dataListStyle.active : null}
+                            onClick={() => {
+                                changeScreen(1)
+                            }}
+                        >Add Data</button>
                     </div>
+                </div>
+                <div className={dataListStyle.condi}>
+                    {display === 0 ? <DataList /> : null}
+                    {display === 1 ? <AddData /> : null}
+                    {display === 2 ? <h1>Settings Page</h1> : null}
                 </div>
             </div>
         </section>
