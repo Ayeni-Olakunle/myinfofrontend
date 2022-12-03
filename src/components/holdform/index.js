@@ -38,8 +38,8 @@ export default function Index() {
 
                     </div>
                 </div>
-                <div>
-                    <div>
+                <div className={dataListStyle.holdData}>
+                    <div className={dataListStyle.holdButton}>
                         <button type="button">Data List</button>
                         <button type="button">Add Data</button>
                     </div>

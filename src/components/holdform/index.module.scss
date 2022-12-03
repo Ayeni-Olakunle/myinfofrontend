@@ -33,3 +33,24 @@ h3 {
     text-decoration: none;
   }
 }
+
+.holdData {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  .holdButton {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      padding: 5px 15px;
+      border-radius: 5px;
+      background-color: #1976d2;
+      color: white;
+      font-size: 17px;
+    }
+  }
+}
