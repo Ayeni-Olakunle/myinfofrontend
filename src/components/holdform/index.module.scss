@@ -32,6 +32,13 @@ h3 {
     color: tomato;
     text-decoration: none;
   }
+  .holdDrop {
+    background-color: transparent !important;
+    border: none !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
 }
 
 .holdData {
@@ -46,6 +53,14 @@ h3 {
     justify-content: space-between;
 
     button {
+      background-color: black;
+      color: #1976d2;
+      border: 2px solid #1976d2;
+      border-radius: 5px;
+      padding: 5px 15px;
+    }
+
+    .active {
       padding: 5px 15px;
       border-radius: 5px;
       background-color: #1976d2;

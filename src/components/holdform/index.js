@@ -13,7 +13,7 @@ export default function Index() {
                     <h3>Sticky Note</h3>
                     <div>
                         <Dropdown>
-                            <Dropdown.Toggle id="dropdown-basic">
+                            <Dropdown.Toggle id="dropdown-basic" className={dataListStyle.holdDrop}>
                                 <span className={dataListStyle.ico}>
                                     <BsPersonCircle />
                                 </span>
@@ -40,7 +40,7 @@ export default function Index() {
                 </div>
                 <div className={dataListStyle.holdData}>
                     <div className={dataListStyle.holdButton}>
-                        <button type="button">Data List</button>
+                        <button type="button" className={dataListStyle.active}>Data List</button>
                         <button type="button">Add Data</button>
                     </div>
                 </div>
