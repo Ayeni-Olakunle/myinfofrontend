@@ -5,7 +5,7 @@ import axios from "axios";
 //   Register user
 
 const register = async (userData) => {
-    const response = await axios.post("https://sleepy-cyan-beanie.cyclic.app/api/users", userData);
+    const response = await axios.post("/api/users", userData);
 
     if (response.data) {
         sessionStorage.setItem("user", JSON.stringify(response.data));

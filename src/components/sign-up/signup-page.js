@@ -60,7 +60,7 @@ export default function SignupPage() {
         }
 
         if (isSuccess || user) {
-            navigate("/information")
+            setSuccessModal(true)
         }
 
         dispatch(reset())
@@ -157,6 +157,7 @@ export default function SignupPage() {
             <SucceesModal
                 show={successModal}
                 onHide={() => {
+                    navigate("/")
                     setSuccessModal(false);
                 }}
             />
