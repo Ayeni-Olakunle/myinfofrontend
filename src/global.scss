@@ -8,3 +8,11 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
+
+.btn-primary {
+  background-color: transparent !important;
+  border: none !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}

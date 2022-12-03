@@ -4,7 +4,7 @@ import "./global.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/login/login";
 import SignupPage from "./components/sign-up/signup-page";
-import DataList from "./components/data-list/dataList";
+import Index from "./components/holdform";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup-page" element={<SignupPage />} />
-          <Route path="/information" element={<DataList />} />
+          <Route path="/information" element={<Index />} />
         </Routes>
       </BrowserRouter>
     </div>
