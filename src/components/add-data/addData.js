@@ -20,7 +20,7 @@ export default function AddData() {
     });
 
     const { linkName, link, description } = postData;
-    const { linkResponse, isError, isSuccess, isLoading, message } = useSelector((stata) => stata.post);
+    const { isError, isSuccess, isLoading, message } = useSelector((stata) => stata.post);
 
     const onChange = (e) => {
         setPostData((prevState) => ({
@@ -46,7 +46,7 @@ export default function AddData() {
     };
 
     useEffect(() => {
-        if (isError || linkResponse === null) {
+        if (isError) {
             setErrorMsg(message)
             setErrModal(true)
         }
@@ -56,7 +56,7 @@ export default function AddData() {
         }
 
         dispatch(reset())
-    }, [linkResponse, isError, isSuccess, isLoading, message, dispatch])
+    }, [isError, isSuccess, isLoading, message, dispatch])
 
     return (
         <section>
