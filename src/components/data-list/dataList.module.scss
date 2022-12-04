@@ -1,0 +1,17 @@
+.holdContent {
+  border: 2px solid gray;
+  border-radius: 8px;
+  padding: 10px;
+  color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.holdButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
