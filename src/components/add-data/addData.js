@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { createLink, reset } from "../../features/addData/addDataSlice";
@@ -37,15 +37,11 @@ export default function AddData() {
             description
         }
         dispatch(createLink(postDataMe));
-        dispatch(reset())
         setPostData({
             linkName: "",
             link: "",
             description: ""
         })
-    };
-
-    useEffect(() => {
         if (isError) {
             setErrorMsg(message)
             setErrModal(true)
@@ -54,9 +50,21 @@ export default function AddData() {
         if (isSuccess) {
             setSuccessModal(true)
         }
-
         dispatch(reset())
-    }, [isError, isSuccess, isLoading, message, dispatch])
+    };
+
+    // useEffect(() => {
+    //     if (isError) {
+    //         setErrorMsg(message)
+    //         setErrModal(true)
+    //     }
+
+    //     if (isSuccess) {
+    //         setSuccessModal(true)
+    //     }
+
+    //     dispatch(reset())
+    // }, [isError, isSuccess, message, dispatch])
 
     return (
         <section>
