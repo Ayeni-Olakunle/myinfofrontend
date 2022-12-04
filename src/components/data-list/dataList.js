@@ -10,7 +10,7 @@ export default function DataList() {
                 <div className={dataListStyle.holdContent}>
                     <div>
                         <h4>The Header Text</h4>
-                        <p>ewfefwefwefwefewfwefwewefwefwefwe</p>
+                        <p>ewfefwefwefwef</p>
                         <p>Date</p>
                     </div>
                     <div className={dataListStyle.holdButton}>
@@ -21,7 +21,7 @@ export default function DataList() {
                 <div className={dataListStyle.holdContent}>
                     <div>
                         <h4>The Header Text</h4>
-                        <p>ewfefwefwefwefewfwefwewefwefwefwe</p>
+                        <p>ewfefwefwefw</p>
                         <p>Date</p>
                     </div>
                     <div className={dataListStyle.holdButton}>
