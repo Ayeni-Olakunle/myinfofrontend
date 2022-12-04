@@ -11,8 +11,8 @@ import ErrorModal from "../modals/errorModal";
 export default function AddData() {
     const dispatch = useDispatch();
     const [errorMsg, setErrorMsg] = useState("");
+    const [errModal, setErrModal] = useState(false);
     const [successModal, setSuccessModal] = useState(false);
-    const [errModal, setErrModal] = useState(true);
     const [postData, setPostData] = useState({
         linkName: "",
         link: "",
@@ -46,7 +46,7 @@ export default function AddData() {
     };
 
     useEffect(() => {
-        if (isError || linkResponse) {
+        if (isError || linkResponse === null) {
             setErrorMsg(message)
             setErrModal(true)
         }

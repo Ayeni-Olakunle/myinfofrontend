@@ -6,7 +6,7 @@ import addDataService from "./addDataService";
 
 
 const initialState = {
-    linkResponse: null,
+    linkResponse: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -23,14 +23,14 @@ export const createLink = createAsyncThunk("link/create", async (linkData, thunk
     }
 })
 
-// export const getLink = createAsyncThunk("link/getALl", async (_, thunkAPI) => {
-//     try {
-//         return await addDataService.postLink(linkData)
-//     } catch (err) {
-//         const message = (err.response && err.response.data && err.response.data.message || err.message || err.toString())
-//         return thunkAPI.rejectWithValue(message)
-//     }
-// })
+export const getLink = createAsyncThunk("link/getALl", async (_, thunkAPI) => {
+    try {
+        return await addDataService.getLink()
+    } catch (err) {
+        const message = (err.response && err.response.data && err.response.data.message || err.message || err.toString())
+        return thunkAPI.rejectWithValue(message)
+    }
+})
 
 export const postLinkSlicer = createSlice({
     name: "postLink",
@@ -48,15 +48,29 @@ export const postLinkSlicer = createSlice({
             .addCase(createLink.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(createLink.fulfilled, (state, actions) => {
+            .addCase(createLink.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.linkResponse(actions.payload)
+                state.linkResponse.push(action.payload)
             })
-            .addCase(createLink.rejected, (state, actions) => {
+            .addCase(createLink.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message(actions.payload);
+                state.message(action.payload);
+            })
+
+            .addCase(getLink.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getLink.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.linkResponse = action.payload
+            })
+            .addCase(getLink.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
                 state.linkResponse = null
             })
     },

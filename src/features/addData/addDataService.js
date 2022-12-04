@@ -4,7 +4,7 @@ import axios from "axios";
 
 //   Post user Info
 
-const postLink = async (userData,) => {
+const postLink = async (userData) => {
     const config = {
         headers: {
             Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("userLogin")).token}`
@@ -15,8 +15,21 @@ const postLink = async (userData,) => {
     return response.data
 }
 
+
+const getLink = async () => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("userLogin")).token}`
+        }
+    }
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}api/info`, config);
+
+    return response.data
+}
+
 const addDataService = {
     postLink,
+    getLink,
 }
 
 export default addDataService;
